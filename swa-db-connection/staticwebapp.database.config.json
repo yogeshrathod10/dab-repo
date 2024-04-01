@@ -1,290 +1,121 @@
 {
-  "$schema": "https://github.com/Azure/data-api-builder/releases/download/v0.10.23/dab.draft.schema.json",
+  "$schema": "https://github.com/Azure/data-api-builder/releases/latest/download/dab.draft.schema.json",
   "data-source": {
     "database-type": "postgresql",
-    "connection-string": "Server=odmpgserver.postgres.database.azure.com;Database=odm_db;Port=5432;User Id=pgdpadmin;Password=odm@2024;Ssl Mode=VerifyFull;",
-    "options": {}
+    "options": {
+      "set-session-context": false 
+    },
+    "connection-string": "@env('DATABASE_CONNECTION_STRING')"
   },
   "runtime": {
     "rest": {
       "enabled": true,
-      "path": "/api",
-      "request-body-strict": true
+      "path": "/rest"
     },
     "graphql": {
+      "allow-introspection": true,
       "enabled": true,
-      "path": "/graphql",
-      "allow-introspection": true
+      "path": "/graphql"
     },
     "host": {
+      "mode": "production",
       "cors": {
-        "origins": [],
+        "origins": ["http://localhost:5000"],
         "allow-credentials": false
       },
       "authentication": {
         "provider": "StaticWebApps"
-      },
-      "mode": "development"
+      }
     }
   },
   "entities": {
     "image_processed_saved": {
-      "source": {
-        "object": "odm.image_processed_saved",
-        "type": "table"
-      },
-      "graphql": {
-        "enabled": true,
-        "type": {
-          "singular": "image_processed_saved",
-          "plural": "image_processed_saveds"
-        }
-      },
-      "rest": {
-        "enabled": true
-      },
+      "source": "odm.image_processed_saved",
       "permissions": [
         {
           "role": "anonymous",
-          "actions": [
-            {
-              "action": "*"
-            }
-          ]
+          "actions": ["*"]
         }
       ]
     },
     "image_prompt": {
-      "source": {
-        "object": "odm.image_prompt",
-        "type": "table"
-      },
-      "graphql": {
-        "enabled": true,
-        "type": {
-          "singular": "image_prompt",
-          "plural": "image_prompts"
-        }
-      },
-      "rest": {
-        "enabled": true
-      },
+      "source": "odm.image_prompt",
       "permissions": [
         {
           "role": "anonymous",
-          "actions": [
-            {
-              "action": "*"
-            }
-          ]
+          "actions": ["*"]
         }
       ]
     },
     "image_tags": {
-      "source": {
-        "object": "odm.image_tags",
-        "type": "table"
-      },
-      "graphql": {
-        "enabled": true,
-        "type": {
-          "singular": "image_tags",
-          "plural": "image_tags"
-        }
-      },
-      "rest": {
-        "enabled": true
-      },
+      "source": "odm.image_tags",
       "permissions": [
         {
           "role": "anonymous",
-          "actions": [
-            {
-              "action": "*"
-            }
-          ]
+          "actions": ["*"]
         }
       ]
     },
     "imageprocessingstat": {
-      "source": {
-        "object": "odm.imageprocessingstat",
-        "type": "table"
-      },
-      "graphql": {
-        "enabled": true,
-        "type": {
-          "singular": "imageprocessingstat",
-          "plural": "imageprocessingstats"
-        }
-      },
-      "rest": {
-        "enabled": true
-      },
+      "source": "odm.imageprocessingstat",
       "permissions": [
         {
           "role": "anonymous",
-          "actions": [
-            {
-              "action": "*"
-            }
-          ]
+          "actions": ["*"]
         }
       ]
     },
     "logs": {
-      "source": {
-        "object": "odm.logs",
-        "type": "table"
-      },
-      "graphql": {
-        "enabled": true,
-        "type": {
-          "singular": "logs",
-          "plural": "logs"
-        }
-      },
-      "rest": {
-        "enabled": true
-      },
+      "source": "odm.logs",
       "permissions": [
         {
           "role": "anonymous",
-          "actions": [
-            {
-              "action": "*"
-            }
-          ]
+          "actions": ["*"]
         }
       ]
     },
     "operations": {
-      "source": {
-        "object": "odm.operations",
-        "type": "table"
-      },
-      "graphql": {
-        "enabled": true,
-        "type": {
-          "singular": "operations",
-          "plural": "operations"
-        }
-      },
-      "rest": {
-        "enabled": true
-      },
+      "source": "odm.operations",
       "permissions": [
         {
           "role": "anonymous",
-          "actions": [
-            {
-              "action": "*"
-            }
-          ]
+          "actions": ["*"]
         }
       ]
     },
     "tag_category": {
-      "source": {
-        "object": "odm.tag_category",
-        "type": "table"
-      },
-      "graphql": {
-        "enabled": true,
-        "type": {
-          "singular": "tag_category",
-          "plural": "tag_categories"
-        }
-      },
-      "rest": {
-        "enabled": true
-      },
+      "source": "odm.tag_category",
       "permissions": [
         {
           "role": "anonymous",
-          "actions": [
-            {
-              "action": "*"
-            }
-          ]
+          "actions": ["*"]
         }
       ]
     },
     "tags": {
-      "source": {
-        "object": "odm.tags",
-        "type": "table"
-      },
-      "graphql": {
-        "enabled": true,
-        "type": {
-          "singular": "tags",
-          "plural": "tags"
-        }
-      },
-      "rest": {
-        "enabled": true
-      },
+      "source": "odm.tags",
       "permissions": [
         {
           "role": "anonymous",
-          "actions": [
-            {
-              "action": "*"
-            }
-          ]
+          "actions": ["*"]
         }
       ]
     },
     "users": {
-      "source": {
-        "object": "odm.users",
-        "type": "table"
-      },
-      "graphql": {
-        "enabled": true,
-        "type": {
-          "singular": "users",
-          "plural": "users"
-        }
-      },
-      "rest": {
-        "enabled": true
-      },
+      "source": "odm.users",
       "permissions": [
         {
           "role": "anonymous",
-          "actions": [
-            {
-              "action": "*"
-            }
-          ]
+          "actions": ["*"]
         }
       ]
     },
     "users_image": {
-      "source": {
-        "object": "odm.users_image",
-        "type": "table"
-      },
-      "graphql": {
-        "enabled": true,
-        "type": {
-          "singular": "users_image",
-          "plural": "users_images"
-        }
-      },
-      "rest": {
-        "enabled": true
-      },
+      "source": "odm.users_image",
       "permissions": [
         {
           "role": "anonymous",
-          "actions": [
-            {
-              "action": "*"
-            }
-          ]
+          "actions": ["*"]
         }
       ]
     }
